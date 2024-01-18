@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'cp /test_ci_cd_team/index.html /var/www/test_ngsi_website/html/'
+                    sh 'cp home/kienngsi/test_ci_cd_team/index.html /var/www/test_ngsi_website/html/'
                     sh 'sudo systemctl restart nginx'
                 }
             }
