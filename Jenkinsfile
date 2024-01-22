@@ -10,11 +10,12 @@ pipeline {
         }
         stage('Build and Test (CI)') {
             when {
-                expression {env.BRANCH_NAME == 'dev'}
+                // expression { env.BRANCH_NAME == 'dev' }
+                branch 'dev'
             }
             steps {
                 script {
-                    echo "Running CI on branch dev"
+                    echo "Running CI on branch ${env.BRANCH_NAME}"
                     def content = readFile('index.html').trim()
                     if (content.contains('error')) {
                         error "CI Failed: File contains an error"
@@ -27,7 +28,8 @@ pipeline {
 
         stage('Deploy to Environment (CD)') {
             when {
-                expression {env.BRANCH_NAME == 'main'}
+                // expression {env.BRANCH_NAME == 'main'}
+                branch 'main'
             }
             steps {
                 script {
