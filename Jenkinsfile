@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build and Test (CI)') {
             when {
-                expression { true }
+                expression { env.BRANCH_NAME == 'dev' }
             }
             steps {
                 script {
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Deploy to Environment (CD)') {
             when {
-                expression {true}
+                expression {env.BRANCH_NAME == 'main'}
             }
             steps {
                 script {
