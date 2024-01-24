@@ -35,8 +35,12 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'cp /home/kienngsi/test_ci_cd_team/index.html /var/www/test_ngsi_website/html/'
-                    sh 'sudo systemctl restart nginx'
+                    dir('reactjs_project') {
+                        sh 'npm install'
+                        sh 'npm run build'
+                        sh 'cp -r build/* /var/www/test_ngsi_website/html/'
+                        sh 'sudo systemctl restart nginx'
+                    }
                 }
             }
         }
