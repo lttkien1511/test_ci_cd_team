@@ -10,17 +10,19 @@ pipeline {
         }
         stage('Build and Test (CI)') {
             when {
-                // expression { env.BRANCH_NAME == 'dev' }
                 branch 'dev'
             }
             steps {
                 script {
                     echo "Running CI on branch ${env.BRANCH_NAME}"
-                    def content = readFile('index.html').trim()
-                    if (content.contains('error')) {
-                        error "CI Failed: File contains an error"
-                    } else {
-                        echo "CI Passed: File does not contain errors."
+                    dir('reactjs_project') {
+                        sh 'npm install'
+                        def result = sh(script: 'npm test', returnStatus: true)
+                        if (result != 0) {
+                            error 'Test failed'
+                        } else {
+                            echo "All tests passed successfully."
+                        }
                     }
                 }
             }
