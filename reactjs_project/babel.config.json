@@ -1,4 +1,4 @@
-{"transformIgnorePatterns": [
-    "node_modules/(?!variables/.*)"
-  ]
+{
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
+  
