@@ -53,6 +53,9 @@
   "jest": {
     "transform": {
       "\\.[jt]sx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
     }
   }
 }
