@@ -14,6 +14,6 @@ test('submit the form and display results', () => {
   fireEvent.click(button);
 
   const resultElement = findByTestId('results');
-  expect(resultElement).toBeInTheDocument();
+  expect(results.length).toBeGreaterThan(0);
 });
 
