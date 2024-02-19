@@ -39,8 +39,12 @@ pipeline {
                         sh 'npm install'
                         sh 'npm run build'
                         sh 'cp -r build/* /var/www/test_ngsi_website/html/'
-                        sh 'sudo systemctl restart nginx'
                     }
+                    dir('API') {
+                        sh 'pip install -r requirements.txt'
+                        sh 'uvicorn main:app --host 0.0.0.0 --port 8000 --reload &'
+                    }
+                    sh 'sudo systemctl restart nginx'
                 }
             }
         }
