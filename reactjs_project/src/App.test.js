@@ -4,7 +4,7 @@ import React from 'react';
 import Homepage from './pages/homepage';
 
 
-test('submit the form and display results', () => {
+test('submit the form and display results', async () => {
   const {getByPlaceholderText, getByRole} = render(<App />);
 
   const input = getByPlaceholderText('Enter laptop name');
@@ -13,7 +13,7 @@ test('submit the form and display results', () => {
   const button = getByRole('button', {name: 'Submit'});
   fireEvent.click(button);
 
-  const resultElement = findByTestId('results');
-  expect(results.length).toBeGreaterThan(0);
+  const resultElement = await findByTestId('results');
+  expect(resultElement).toBeGreaterThan(0);
 });
 
