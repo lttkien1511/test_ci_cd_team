@@ -14,6 +14,6 @@ test('submit the form and display results', async () => {
   fireEvent.click(button);
 
   const resultElement = await findByTestId('results');
-  expect(resultElement).toBeGreaterThan(0);
+  expect(resultElement).toBeInTheDocument();
 });
 
