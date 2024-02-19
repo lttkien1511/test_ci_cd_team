@@ -1,6 +1,8 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, findByTestId } from '@testing-library/react';
 import App from './App';
 import React from 'react';
+import Homepage from './pages/homepage';
+
 
 test('submit the form and display results', () => {
   const {getByPlaceholderText, getByRole} = render(<App />);
@@ -11,9 +13,7 @@ test('submit the form and display results', () => {
   const button = getByRole('button', {name: 'Submit'});
   fireEvent.click(button);
 
-  expect(results.length).toBeGreaterThan(0);
+  const resultElement = findByTestId('results');
+  expect(resultElement).toBeInTheDocument();
 });
 
-// test('should render without crashing', () => {
-//   render(<App/>);
-// });

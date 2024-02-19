@@ -20,6 +20,8 @@ function Homepage () {
         ...trungtrandata.map(item => [item.name, null, null, item.price])
     ];
 
+    const [results, setResults] = useState(null);
+
 
     const getData = () => {
         try {
@@ -32,6 +34,7 @@ function Homepage () {
                     setAnphatpcdata(response.data.anphatpc.data);
                     setTrungtrandata(response.data.trungtran.data);
                     setLaptopazdata(response.data.laptopaz.data);
+                    setResults(response);
                 }
             }).catch(error => {
                 console.error(error);
