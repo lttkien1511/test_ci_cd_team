@@ -1,11 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from './App';
 import React from 'react';
 
-test('renders learn react link', () => {
-  const {getByText} = render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('submit the form and display results', () => {
+  const {getByPlaceholderText, getByRole} = render(<App />);
+
+  const input = getByPlaceholderText('Enter laptop name');
+  fireEvent.change(input, {target: {value: '...'}});
+
+  const button = getByRole('button', {name: 'Submit'});
+  fireEvent.click(button);
+
+  expect(results.length).toBeGreaterThan(0);
 });
 
 // test('should render without crashing', () => {
