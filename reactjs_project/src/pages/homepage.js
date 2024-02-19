@@ -11,7 +11,7 @@ function Homepage () {
     const [laptopazdata, setLaptopazdata] = useState([]);
 
     const [query, setQuery] = useState('');
-    const [page, setPage] = useState(1);
+    const [page] = useState(1);
 
     const headers  = ['Danh sách laptop', 'AnphatPC', 'LaptopAZ', 'Trungtran'];
     const tableData = [
@@ -20,7 +20,6 @@ function Homepage () {
         ...trungtrandata.map(item => [item.name, null, null, item.price])
     ];
 
-    const [results, setResults] = useState(null);
 
 
     const getData = () => {
@@ -34,7 +33,6 @@ function Homepage () {
                     setAnphatpcdata(response.data.anphatpc.data);
                     setTrungtrandata(response.data.trungtran.data);
                     setLaptopazdata(response.data.laptopaz.data);
-                    setResults(response);
                 }
             }).catch(error => {
                 console.error(error);
