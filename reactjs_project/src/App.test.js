@@ -1,19 +1,19 @@
-import { render, fireEvent, findByTestId } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import App from './App';
 import React from 'react';
 import Homepage from './pages/homepage';
 
 
 test('submit the form and display results', async () => {
-  const {getByPlaceholderText, getByRole} = render(<App />);
-
-  const input = getByPlaceholderText('Enter laptop name');
+  // const {getByPlaceholderText, getByRole} = render(<App />);
+  render(<App/>);
+  const input = screen.getByPlaceholderText('Enter laptop name');
   fireEvent.change(input, {target: {value: '...'}});
 
-  const button = getByRole('button', {name: 'Submit'});
+  const button = screen.getByRole('button', {name: 'Submit'});
   fireEvent.click(button);
 
-  const resultElement = await findByTestId('results');
+  const resultElement = await screen.findByTestId('results');
   expect(resultElement).toBeInTheDocument();
 });
 
