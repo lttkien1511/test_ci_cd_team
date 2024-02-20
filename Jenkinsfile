@@ -44,7 +44,6 @@ pipeline {
                         sh 'pip install -r requirements.txt'
                         sh 'uvicorn main:app --host 0.0.0.0 --port 8000 &'
                     }
-                    sleep(time: 30, unit: 'SECONDS')
                     sh 'sudo systemctl restart nginx'
                 }
             }
