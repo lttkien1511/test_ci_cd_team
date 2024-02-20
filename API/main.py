@@ -36,3 +36,5 @@ async def getdata(search_query: str, page : int):
         return Reply.make(True, 'Success', combined_data)
     except Exception as e:
         return Reply.make(False, 'Failed', e)
+    
+
