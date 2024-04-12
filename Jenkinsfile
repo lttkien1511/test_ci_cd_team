@@ -48,5 +48,19 @@ pipeline {
                 }
             }
         }
+
+        stage('SonarQube analysis') {
+            when {
+                branch 'main'
+            }
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner';
+                    withSonarQubeEnv('Sonar-Server') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
     }
 }
