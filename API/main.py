@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status,  Response, Query
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.middleware.cors import CORSMiddleware
-from Controller import laptopaz, trungtran, anphatpc
+from Controller import laptopaz, trungtran, anphatpc, login
 from Helper.Reply import Reply
 
 security = HTTPBasic()
@@ -10,7 +10,7 @@ app = FastAPI()
 # app.include_router(laptopaz.router, prefix='/laptopaz')
 # app.include_router(trungtran.router, prefix='/trungtran')
 # app.include_router(anphatpc.router, prefix='/anphatpc')
-
+app.include_router(login.router, prefix="/login")
 origins = ["*"]
 
 app.add_middleware(
